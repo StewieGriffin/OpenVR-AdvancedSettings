@@ -70,7 +70,7 @@ update_and_install_prereqs: &update_and_install_prereqs
             mkdir -v build
             cd build
             qmake --version
-            qmake --spec linux-clang ../
+            qmake -spec linux-clang ../
             bear make --jobs
             ../build_scripts/linux/run-clang-tidy.sh
 
@@ -152,7 +152,7 @@ jobs:
                     mkdir -v build
                     cd build
                     qmake --version
-                    qmake --spec linux-g++ ../
+                    qmake -spec linux-g++ ../
                     make --jobs
             - run:
                 name: Get qtdeploylinux

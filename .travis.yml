@@ -68,6 +68,6 @@ script:
   - mkdir -v build
   - cd build
   - qmake --version
-  - qmake --spec $QMAKE_SPEC
+  - qmake -spec $QMAKE_SPEC
   - $MAKE
   - $TIDY
