@@ -66,7 +66,13 @@ update_and_install_prereqs: &update_and_install_prereqs
             chmod +x ./build_scripts/linux/verify_formatting.sh
     - run:
         name: Run build script
-        command: ./build_scripts/linux/build_linux.sh
+        command: |
+            mkdir -v build
+            cd build
+            qmake --version
+            qmake --spec linux-clang ../
+            bear make --jobs
+            ../build_scripts/linux/run-clang-tidy.sh
 
 jobs:
     gcc:
@@ -142,7 +148,12 @@ jobs:
                     cat ./build_scripts/compile_version_string.txt
             - run:
                 name: Run build script
-                command: ./build_scripts/linux/build_linux.sh
+                command: |
+                    mkdir -v build
+                    cd build
+                    qmake --version
+                    qmake --spec linux-g++ ../
+                    make --jobs
             - run:
                 name: Get qtdeploylinux
                 command: |
