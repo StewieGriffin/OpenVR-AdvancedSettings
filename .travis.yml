@@ -11,47 +11,15 @@ matrix:
         packages:
         - g++-7
     env:
-    - QMAKE_SPEC=linux-g++
     - QT_SELECT="opt-qt512"
-    - MAKE="make --jobs"
     compiler: gcc
-
-  - os: linux
-    addons:
-      apt:
-        sources:
-        - ubuntu-toolchain-r-test
-        packages:
-        - g++-7
-    env:
-    - QMAKE_SPEC=linux-clang
-    - QT_SELECT="opt-qt512"
-    - MAKE="make --jobs"
-    compiler: clang
-
-  - os: linux
-    addons:
-      apt:
-        sources:
-        - ubuntu-toolchain-r-test
-        packages:
-        - g++-7
-    env:
-    - QT_SELECT="opt-qt512"
-    - MAKE="bear make --jobs"
-    - TIDY="../build_scripts/linux/run-clang-tidy.sh"
-    compiler: clang
 
 before_install:
   - chmod +x ./build_scripts/linux/build_linux.sh
   - chmod +x ./build_scripts/linux/format.sh
   - chmod +x ./build_scripts/linux/run-clang-tidy.sh
   - chmod +x ./build_scripts/linux/verify_formatting.sh
-  - wget -O - https://apt.llvm.org/llvm-snapshot.gpg.key | sudo apt-key add -
-  - sudo add-apt-repository 'deb http://apt.llvm.org/xenial/ llvm-toolchain-xenial-8 main'
   - sudo apt update -qq
-  - sudo apt install clang-format-8
-  - clang-format-8 --version
   - python ./build_scripts/run-clang-format.py ./src -r --color always --clang-format-executable clang-format-8
 
 install:
@@ -61,13 +29,11 @@ install:
   - sudo apt-get install build-essential libgl1-mesa-dev
   - sudo apt-get install qt512-meta-minimal qt512multimedia qt512declarative qt512quickcontrols2  qt512tools  qt512base
   - sudo apt-get install libx11-dev libxt-dev libxtst-dev
-  - sudo apt-get install bear clang-tidy
   - qtchooser -install opt-qt512 /opt/qt512/bin/qmake
 
 script:
   - mkdir -v build
   - cd build
   - qmake --version
-  - qmake -spec $QMAKE_SPEC
-  - $MAKE
-  - $TIDY
+  - qmake -spec linux-g++
+  - make --jobs

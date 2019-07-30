@@ -71,7 +71,7 @@ update_and_install_prereqs: &update_and_install_prereqs
             cd build
             qmake --version
             qmake -spec linux-clang ../
-            bear make --jobs
+            bear make --jobs 2
             ../build_scripts/linux/run-clang-tidy.sh
 
 jobs:
@@ -153,7 +153,7 @@ jobs:
                     cd build
                     qmake --version
                     qmake -spec linux-g++ ../
-                    make --jobs
+                    make --jobs 2
             - run:
                 name: Get qtdeploylinux
                 command: |
