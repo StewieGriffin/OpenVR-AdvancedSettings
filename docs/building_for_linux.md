@@ -11,6 +11,7 @@
 - [TL;DR: for Ubuntu](#tl-dr--for-ubuntu)
   * [Ubuntu 16.04 Xenial](#ubuntu-1604-xenial)
   * [Ubuntu 18.04 Bionic](#ubuntu-1804-bionic)
+  * [Ubuntu 19.04 Disco](#ubuntu-1904-disco)
 - [Locations and Environment Variables](#locations-and-environment-variables)
 - [Building](#building)
 - [Contributing](#contributing)
