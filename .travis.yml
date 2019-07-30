@@ -40,5 +40,5 @@ script:
   - mkdir -v build
   - cd build
   - qmake --version
-  - qmake -spec linux-g++
+  - qmake -spec linux-g++ ../
   - make --jobs
