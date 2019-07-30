@@ -11,6 +11,7 @@ matrix:
         packages:
         - g++-7
     env:
+    - QMAKE_SPEC=linux-g++
     - QT_SELECT="opt-qt512"
     compiler: gcc
 
@@ -19,7 +20,11 @@ before_install:
   - chmod +x ./build_scripts/linux/format.sh
   - chmod +x ./build_scripts/linux/run-clang-tidy.sh
   - chmod +x ./build_scripts/linux/verify_formatting.sh
+  - wget -O - https://apt.llvm.org/llvm-snapshot.gpg.key | sudo apt-key add -
+  - sudo add-apt-repository 'deb http://apt.llvm.org/xenial/ llvm-toolchain-xenial-8 main'
   - sudo apt update -qq
+  - sudo apt install clang-format-8
+  - clang-format-8 --version
   - python ./build_scripts/run-clang-format.py ./src -r --color always --clang-format-executable clang-format-8
 
 install:
