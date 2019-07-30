@@ -3,9 +3,6 @@ workflows:
     gcc_1:
         jobs:
           - gcc
-    clang_1:
-        jobs:
-          - clang
     clang_tidy:
         jobs:
           - clang-tidy
@@ -162,15 +159,6 @@ jobs:
             - store_artifacts:
                 path: ./artifacts/
 
-    clang:
-        environment:
-            QMAKE_SPEC: linux-clang
-            QT_SELECT: opt-qt512
-            MAKE_JOBS: 2
-        docker:
-            - image: "ubuntu:xenial"
-        steps: *update_and_install_prereqs
-            
     clang-tidy:
         environment:
             QMAKE_SPEC: linux-clang
