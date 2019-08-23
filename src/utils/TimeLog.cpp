@@ -11,7 +11,7 @@ void TimeLog::checkForDelay( std::string message )
     oldTimePoint = currentTimePoint;
     if ( hangTime.count() > thresholdTime )
     {
-        LOG( ERROR ) << "Program Hung for: " << hangTime
+        LOG( ERROR ) << "Program Hung for: " << hangTime.count()
                      << "ms  before: " << message;
     }
 }
