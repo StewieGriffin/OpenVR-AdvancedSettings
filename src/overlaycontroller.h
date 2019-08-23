@@ -27,6 +27,7 @@
 #include "openvr/openvr_init.h"
 
 #include "utils/ChaperoneUtils.h"
+#include "utils/TimeLog.h"
 
 #include "tabcontrollers/SteamVRTabController.h"
 #include "tabcontrollers/ChaperoneTabController.h"
@@ -112,6 +113,8 @@ private:
     QSoundEffect m_activationSoundEffect;
     QSoundEffect m_focusChangedSoundEffect;
     QSoundEffect m_alarm01SoundEffect;
+
+    TimeLog::TimeLog m_TimeLog;
 
     uint64_t m_currentFrame = 0;
     uint64_t m_lastFrame = 0;

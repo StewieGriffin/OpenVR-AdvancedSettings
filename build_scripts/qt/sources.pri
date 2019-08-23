@@ -17,7 +17,8 @@ SOURCES += src/main.cpp\
     src/utils/paths.cpp \
     src/openvr/overlay_utils.cpp \
     src/keyboard_input/keyboard_input.cpp \
-    src/keyboard_input/input_parser.cpp
+    src/keyboard_input/input_parser.cpp \
+	src/utils/TimeLog.cpp
 
 HEADERS += src/overlaycontroller.h \
     src/tabcontrollers/AudioTabController.h \
@@ -47,7 +48,8 @@ HEADERS += src/overlaycontroller.h \
     src/utils/paths.h \
     src/openvr/overlay_utils.h \
     src/keyboard_input/input_parser.h \
-    src/keyboard_input/input_sender.h
+    src/keyboard_input/input_sender.h \
+	src/utils/TimeLog.h
 
 win32 {
     SOURCES += src/tabcontrollers/audiomanager/AudioManagerWindows.cpp \

@@ -465,6 +465,7 @@ void OverlayController::SetWidget( QQuickItem* quickItem,
              this,
              SLOT( OnTimeoutPumpEvents() ) );
 
+    m_TimeLog.initClock();
     // Every 1ms we check if the current frame has advanced (for vysnc)
     m_pPumpEventsTimer->setInterval( 1 );
 
@@ -705,14 +706,15 @@ has been.
 */
 void OverlayController::processInputBindings()
 {
+    m_TimeLog.checkForDelay( "media input bindings" );
     processMediaKeyBindings();
-
+    m_TimeLog.checkForDelay( "motion input bindings" );
     processMotionBindings();
-
+    m_TimeLog.checkForDelay( "ptt input bindings" );
     processPushToTalkBindings();
-
+    m_TimeLog.checkForDelay( "chappy input bindings" );
     processChaperoneBindings();
-
+    m_TimeLog.checkForDelay( "keyboard input bindings" );
     processKeyboardBindings();
 }
 
@@ -832,12 +834,14 @@ void OverlayController::mainEventLoop()
     if ( !vr::VRSystem() )
         return;
 
+    m_TimeLog.checkForDelay( "update states" );
     m_actions.UpdateStates();
-
+    m_TimeLog.checkForDelay( "input bindings" );
     processInputBindings();
 
     vr::VREvent_t vrEvent;
     bool chaperoneDataAlreadyUpdated = false;
+    m_TimeLog.checkForDelay( "poll" );
     while ( pollNextEvent( m_ulOverlayHandle, &vrEvent ) )
     {
         switch ( vrEvent.eventType )
@@ -1039,17 +1043,23 @@ void OverlayController::mainEventLoop()
         hmdSpeed
             = std::sqrt( vel[0] * vel[0] + vel[1] * vel[1] + vel[2] * vel[2] );
     }
+    m_TimeLog.checkForDelay( "event tick motion" );
     m_moveCenterTabController.eventLoopTick(
         vr::VRCompositor()->GetTrackingSpace(), devicePoses );
+    m_TimeLog.checkForDelay( "event tick util" );
     m_utilitiesTabController.eventLoopTick();
+    m_TimeLog.checkForDelay( "event tick stats" );
     m_statisticsTabController.eventLoopTick(
         devicePoses, leftSpeed, rightSpeed );
+    m_TimeLog.checkForDelay( "event tick chappy" );
     m_chaperoneTabController.eventLoopTick(
         devicePoses, leftSpeed, rightSpeed, hmdSpeed );
+    m_TimeLog.checkForDelay( "event tick audio" );
     m_audioTabController.eventLoopTick();
 
     if ( vr::VROverlay()->IsDashboardVisible() )
     {
+        m_TimeLog.checkForDelay( "dashboard Ticks" );
         m_settingsTabController.dashboardLoopTick();
         m_steamVRTabController.dashboardLoopTick();
         m_fixFloorTabController.dashboardLoopTick( devicePoses );
