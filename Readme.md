@@ -5,6 +5,13 @@
 [![Build status](https://ci.appveyor.com/api/projects/status/8oivf5xws6vsq2x3/branch/master?svg=true)](https://ci.appveyor.com/project/icewind1991/openvr-advancedsettings/branch/master)
 [![Build Status](https://travis-ci.org/OpenVR-Advanced-Settings/OpenVR-AdvancedSettings.svg?branch=master)](https://travis-ci.org/OpenVR-Advanced-Settings/OpenVR-AdvancedSettings)
 
+[![Discord Shield](https://discordapp.com/api/guilds/593808397304987648/widget.png?style=shield)](https://discordapp.com/invite/cW6cRyv)
+
+# OpenVR Advanced Settings Overlay
+Adds an overlay to the OpenVR dashboard that allows access to advanced settings and useful utilities.
+
+![Example Screenshot](docs/screenshots/InVRScreenshot.png)
+
 - [Features](#features)
 - [Usage](#usage)
   * [Installer](#installer)
@@ -41,11 +48,6 @@
 - [Notes:](#notes-)
 - [Common Issues](#common-issues)
 - [License](#license)
-
-# OpenVR Advanced Settings Overlay
-Adds an overlay to the OpenVR dashboard that allows access to advanced settings and useful utilities.
-
-![Example Screenshot](docs/screenshots/InVRScreenshot.png)
 
 # Features
 
