@@ -1,6 +1,4 @@
 #pragma once
-#include "../overlaycontroller.h"
-#include <openvr.h>
 #include <iostream>
 #include <easylogging++.h>
 #include <string>
